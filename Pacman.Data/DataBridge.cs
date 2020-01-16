@@ -264,26 +264,27 @@ namespace Pacman.Data
         }
         public static bool CheckIsEmailExist(string email)
         {
-            bool result = false;
+            //bool result = false;
 
-            var checkEmail = new SqlParameter { ParameterName = "@checkEmail", SqlDbType = SqlDbType.VarChar, Value = email };
-            var resultParameter = new SqlParameter { ParameterName = "@result", SqlDbType = SqlDbType.VarChar, Value = "", Direction = ParameterDirection.Output };
-            var results = context.Database.SqlQuery<int>("exec @result= checkEmail @checkEmail", resultParameter, checkEmail);
-            try
-            {
-                var isExist = results.FirstOrDefault();
-                if (isExist == 1)
-                {
-                    result = true;
-                }
+            //var checkEmail = new SqlParameter { ParameterName = "@checkEmail", SqlDbType = SqlDbType.VarChar, Value = email };
+            //var resultParameter = new SqlParameter { ParameterName = "@result", SqlDbType = SqlDbType.VarChar, Value = "", Direction = ParameterDirection.Output };
+            //var results = context.Database.SqlQuery<int>("exec @result= checkEmail @checkEmail", resultParameter, checkEmail);
+            //try
+            //{
+            //    var isExist = results.FirstOrDefault();
+            //    if (isExist == 1)
+            //    {
+            //        result = true;
+            //    }
 
 
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return result;
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
+            //return result;
+            return false;
         }
 
         public static bool UserIsLogin()

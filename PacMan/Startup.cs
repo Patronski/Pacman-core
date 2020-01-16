@@ -1,5 +1,6 @@
 ﻿namespace Pacman
 {
+    using Pacman.Data;
     using System;
     using System.Windows.Forms;
 
