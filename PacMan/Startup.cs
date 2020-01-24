@@ -9,6 +9,9 @@
         [STAThread]
         public static void Main()
         {
+            var context = new PacmanContext();
+            context.Configure();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Forms.Login());

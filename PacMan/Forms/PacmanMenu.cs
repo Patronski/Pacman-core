@@ -90,15 +90,15 @@
             //Fill User statistic
             this.LastLevel.Text = DataBridge.GetLastPlayedGame();
             this.UserTotalPoints.Text = DataBridge.GetUserTotalPoints();
-            this.UserComplateLevels.Text = DataBridge.GetUserComplateLevels();
+            this.UserComplateLevels.Text = DataBridge.GetUserCompletedLevels();
             this.UserNonCompleateLevels.Text = DataBridge.UserNonCompleateLevels();
             this.UserTotalDuration.Text = DataBridge.UserTotalDuration();
 
             //Fill Total statistic
             this.TotalPlayers.Text = DataBridge.GetTotalPlayers();
             this.TotalPoints.Text = DataBridge.GetTotalPoints(); ;
-            this.ComplateLevels.Text = DataBridge.GetComplateLevels(); ;
-            this.NonCompleateLevels.Text = DataBridge.NonCompleateLevels(); ;
+            this.ComplateLevels.Text = DataBridge.GetCompletedLevels(); ;
+            this.NonCompleateLevels.Text = DataBridge.NonCompletedLevels(); ;
             this.TotalDuration.Text = DataBridge.TotalDuration(); ;
         }
 

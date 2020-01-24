@@ -123,7 +123,6 @@
     <Compile Include="Handlers\KeyPress.cs" />
     <Compile Include="Handlers\PacmanInputHandler.cs" />
     <Compile Include="Core\ScoreBoard.cs" />
-    <Compile Include="Utilities\ExtractAllLevels.cs" />
     <Compile Include="Interfaces\IGameObject.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="Core\Matrix.cs" />

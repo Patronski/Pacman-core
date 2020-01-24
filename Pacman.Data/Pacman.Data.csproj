@@ -59,6 +59,8 @@
     <Compile Include="DataBridge.cs" />
     <Compile Include="PacmanContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seeder.cs" />
+    <Compile Include="Utilities\ExtractAllLevels.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

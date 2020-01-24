@@ -109,7 +109,7 @@
                     if (this.pacMan.IsAlive)
                     {
                         string levelName = currentLevel.Name;
-                        Level newLevel = DataBridge.GerRandomLevel(levelName);
+                        Level newLevel = DataBridge.GetRandomLevel(levelName);
                         if (newLevel != null)
                         {
                             using (var game = new Engine(newLevel, this.difficulty))

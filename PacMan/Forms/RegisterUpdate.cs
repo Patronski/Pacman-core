@@ -25,8 +25,8 @@ namespace Pacman.Forms
             this.cities = new List<City>();
             this.formType = formType;
             InitializeComponent();
-            this.coutries.AddRange(DataBridge.AllCountries);
-            this.cities.AddRange(DataBridge.GetAllCities);
+            this.coutries.AddRange(DataBridge.GetCountries);
+            this.cities.AddRange(DataBridge.GetCities);
             this.Countries.Items.AddRange(this.coutries.Select(c => c.Name).ToArray());
         }
 
@@ -56,7 +56,7 @@ namespace Pacman.Forms
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.Anecdote.Text = DataBridge.GetRandomeAnecdote().AnecdoteNote;
+            this.Anecdote.Text = DataBridge.GetRandomAnecdote().AnecdoteNote;
             var anecdoteLetters = this.Anecdote.Text.Length;
 
             this.AnecdoteTimer.Interval = anecdoteLetters * 60;
@@ -256,13 +256,13 @@ namespace Pacman.Forms
                 this.RegButton.Text = "Update";
                 this.Username.Enabled = false;
                 User user = DataBridge.GetUserData();
-                this.Countries.Items.AddRange(DataBridge.AllCountries.ToArray());
+                this.Countries.Items.AddRange(DataBridge.GetCountries.ToArray());
                 this.FirstName.Text = user.FirstName;
                 this.LastName.Text = user.LastName;
                 if (user.BurthDate != null) this.BurthDate.Value = (DateTime)user.BurthDate;
                 this.Countries.Text = user.Country.Name;
 
-                this.Cities.Items.AddRange(DataBridge.GetAllCities.Where(c => c.Country.Name == this.Countries.Text).ToArray());
+                this.Cities.Items.AddRange(DataBridge.GetCities.Where(c => c.Country.Name == this.Countries.Text).ToArray());
                 this.Cities.Text = user.City.Name;
                 this.Username.Text = DataBridge.GetUserEmail();
             }

@@ -19,21 +19,21 @@ namespace Pacman.Models
         }
 
         [Key]
-        public int Id { get; protected set; }
+        public int Id { get; set; }
 
         [Required]
-        public string FirstName { get; protected set; }
+        public string FirstName { get; set; }
 
         [Required]
-        public string LastName { get; protected set; }
+        public string LastName { get; set; }
 
-        public DateTime? BurthDate { get; protected set; }
+        public DateTime? BurthDate { get; set; }
 
-        public virtual Country Country { get; protected set; }
-        public int? CountryId { get; protected set; }
+        public virtual Country Country { get; set; }
+        public int? CountryId { get; set; }
         
-        public virtual City City { get; protected set; }
-        public int? CityId { get; protected set; }
+        public virtual City City { get; set; }
+        public int? CityId { get; set; }
 
         public ICollection<Statistic> Statistics { get; set; }
 

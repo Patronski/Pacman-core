@@ -31,18 +31,18 @@ namespace Pacman.Forms
             this.LoginButton.Enabled = false;
             this.RegisterButton.Enabled = false;
 
-            DataBridge.LogInUser(this.Username.Text, this.Password.Text);
+            //DataBridge.LogInUser(this.Username.Text, this.Password.Text);
 
-            if (DataBridge.UserIsLogin())
-            {
+            //if (DataBridge.UserIsLogin())
+            //{
                 var pacmanMenu = new PacmanMenu();
                 Hide();
                 pacmanMenu.Show();
-            }
-            else
-            {
-                MessageBox.Show("The User not found.Please try again.");
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("The User not found.Please try again.");
+            //}
 
             this.LoginButton.Text = "Login";
             this.RegisterButton.Enabled = true;
@@ -134,7 +134,7 @@ namespace Pacman.Forms
         {
             PacmanContext context = new PacmanContext();
 
-            context.Database.Initialize(true);
+            //context.Database.Initialize(false);
             this.ActiveControl = this.Username;
         }
 

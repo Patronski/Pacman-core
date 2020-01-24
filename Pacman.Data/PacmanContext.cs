@@ -20,6 +20,7 @@ namespace Pacman.Data
         public DbSet<Statistic> Statistics { get; set; }
         public DbSet<PlayerStatistic> PlayerStatistics { get; set; }
 
+        //Uncomment this method when database is not created.
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
@@ -34,6 +35,16 @@ namespace Pacman.Data
                     userFriends.MapRightKey("FriendId");
                     userFriends.ToTable("UsersFriends");
                 });
+        }
+
+        public void Configure()
+        {
+            if (this.Database.Exists())
+                return;
+
+            this.Database.Create();
+            var seeder = new Seeder(this);
+            seeder.SeedDatabase();
         }
     }
 }

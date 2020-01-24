@@ -10,15 +10,19 @@ namespace Pacman.Models
 
         [ForeignKey("LevelId")]
         public virtual Level Level { get; protected set; }
+
         public int LevelId { get; protected set; }
 
         [Required]
-        public int QuadrantX { get; protected set; }
+        public int QuadrantX { get; set; }
+
         [Required]
-        public int QuadrantY { get; protected set; }
+        public int QuadrantY { get; set; }
+
         [Required]
-        public bool isWall { get; protected set; }
+        public bool isWall { get; set; }
+
         [Required]
-        public bool isPoint { get; protected set; }
+        public bool isPoint { get; set; }
     }
 }

@@ -25,6 +25,11 @@ namespace Pacman.Data
         private static bool userIsLogin = false;
         private static int attempts;
 
+        public DataBridge()
+        {
+
+        }
+
         public static IQueryable<string> AllCountriesName
         {
             get
@@ -38,9 +43,9 @@ namespace Pacman.Data
             }
         }
 
-        public static ICollection<Country> AllCountries => countries ?? (countries = context.Countries.ToList());
+        public static ICollection<Country> GetCountries => countries ?? (countries = context.Countries.ToList());
 
-        public static ICollection<City> GetAllCities => cities ?? (cities = context.Cities.ToList());
+        public static ICollection<City> GetCities => cities ?? (cities = context.Cities.ToList());
 
         public static ICollection<City> GetCitiesByCountryName(string countryName)
         {
@@ -50,7 +55,7 @@ namespace Pacman.Data
             }
         }
 
-        public static Anecdote GetRandomeAnecdote()
+        public static Anecdote GetRandomAnecdote()
         {
             var count = context.Anecdotes.Count();
             var randomIndex = random.Next(1, count);
@@ -122,7 +127,25 @@ namespace Pacman.Data
 
         }
 
-        public static void RegisterUser(string firstName, string lastName, DateTime burthDate, int? countryId,
+        public static void RegisterUser(string firstName, string lastName, DateTime birthDate, int? countryId,
+                                        int? cityId, string email, string password, bool isDelete, User.Roles role)
+        {
+            var passwordHash = Hash(password);
+
+            var user = new User
+            {
+                BurthDate = birthDate,
+                CityId = cityId,
+                CountryId = countryId,
+                FirstName = firstName,
+                LastName = lastName,
+                
+            };
+
+            context.Users.Add(user);
+        }
+
+        public static void RegisterUser_Stoqn(string firstName, string lastName, DateTime burthDate, int? countryId,
                                         int? cityId, string email, string password, bool isDelete, User.Roles role)
         {
 
@@ -349,14 +372,11 @@ namespace Pacman.Data
 
         }
 
+        /// <summary>
+        /// Use instead of context.SaveChanges();
+        /// </summary>
         public static void UpdateDatabaseStats()
         {
-
-            if (attempts == null || attempts == 6)
-            {
-                attempts = 1;
-            }
-
             try
             {
                 context.SaveChangesAsync();
@@ -364,25 +384,23 @@ namespace Pacman.Data
             }
             catch (Exception)
             {
-                System.Threading.Thread.Sleep(500);
                 if (attempts == 5)
                 {
                     throw new InvalidOperationException();
                 }
                 else
                 {
+                    System.Threading.Thread.Sleep(500);
                     attempts++;
                     UpdateDatabaseStats();
                 }
-
             }
-
         }
 
         public static void StartNewGame(string levelName)
         {
             statistic.Level = levels.FirstOrDefault(level => level.Name == levelName);
-            statistic.UserId = user.Id; //Important Do not change
+            statistic.UserId = user.Id;
             statistic.StartGame = DateTime.Now;
             context.Statistics.Add(statistic);
             //context.SaveChanges();
@@ -440,7 +458,7 @@ namespace Pacman.Data
             return "n/a";
         }
 
-        public static string GetUserComplateLevels()
+        public static string GetUserCompletedLevels()
         {
             var statisticData = context.PlayerStatistics
                 .Where(ps => ps.User.Id == user.Id);
@@ -458,7 +476,6 @@ namespace Pacman.Data
             }
 
             return "n/a";
-
         }
 
         public static string UserNonCompleateLevels()
@@ -488,7 +505,6 @@ namespace Pacman.Data
             }
 
             return "n/a";
-
         }
 
         public static string GetTotalPlayers()
@@ -514,7 +530,7 @@ namespace Pacman.Data
             return "n/a";
         }
 
-        public static string GetComplateLevels()
+        public static string GetCompletedLevels()
         {
             var statisticData = context.PlayerStatistics;
 
@@ -537,10 +553,9 @@ namespace Pacman.Data
 
 
             return "n/a";
-
         }
 
-        public static string NonCompleateLevels()
+        public static string NonCompletedLevels()
         {
             var result = context.PlayerStatistics;
             if (result != null)
@@ -554,6 +569,7 @@ namespace Pacman.Data
 
             return "n/a";
         }
+
         public static string TotalDuration()
         {
             var result = context.Statistics;
@@ -571,11 +587,12 @@ namespace Pacman.Data
 
         }
 
-        public static Level GerRandomLevel(string exlusionByName)
+        public static Level GetRandomLevel(string exlusionByName)
         {
             var myLevels = GetAllLevels().Where(l => l.Name != exlusionByName);
             var count = myLevels.Count();
             var randomIndex = random.Next(1, count);
+
             return myLevels.ToList()[randomIndex];
         }
 
@@ -584,6 +601,7 @@ namespace Pacman.Data
         {
             var bytes = new UTF8Encoding().GetBytes(password);
             var hashBytes = System.Security.Cryptography.SHA256.Create().ComputeHash(bytes);
+
             return Convert.ToBase64String(hashBytes);
         }
     }
