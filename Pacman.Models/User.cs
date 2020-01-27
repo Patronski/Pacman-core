@@ -27,13 +27,18 @@ namespace Pacman.Models
         [Required]
         public string LastName { get; set; }
 
-        public DateTime? BurthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         public virtual Country Country { get; set; }
         public int? CountryId { get; set; }
         
         public virtual City City { get; set; }
         public int? CityId { get; set; }
+
+        public string Password { get; set; }
+        
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
 
         public ICollection<Statistic> Statistics { get; set; }
 

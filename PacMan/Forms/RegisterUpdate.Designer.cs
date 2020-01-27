@@ -35,7 +35,7 @@
             this.LastName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.BurthDate = new System.Windows.Forms.DateTimePicker();
+            this.BirthDate = new System.Windows.Forms.DateTimePicker();
             this.Countries = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -108,11 +108,11 @@
             // 
             // BurthDate
             // 
-            this.BurthDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BurthDate.Location = new System.Drawing.Point(149, 73);
-            this.BurthDate.Name = "BurthDate";
-            this.BurthDate.Size = new System.Drawing.Size(226, 26);
-            this.BurthDate.TabIndex = 7;
+            this.BirthDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BirthDate.Location = new System.Drawing.Point(149, 73);
+            this.BirthDate.Name = "BurthDate";
+            this.BirthDate.Size = new System.Drawing.Size(226, 26);
+            this.BirthDate.TabIndex = 7;
             // 
             // Countries
             // 
@@ -287,7 +287,7 @@
             this.Controls.Add(this.Cities);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Countries);
-            this.Controls.Add(this.BurthDate);
+            this.Controls.Add(this.BirthDate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.LastName);
             this.Controls.Add(this.label1);
@@ -313,7 +313,7 @@
         private System.Windows.Forms.TextBox LastName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker BurthDate;
+        private System.Windows.Forms.DateTimePicker BirthDate;
         private System.Windows.Forms.ComboBox Countries;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

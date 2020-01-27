@@ -16,7 +16,7 @@ namespace Pacman.Forms
             this.AnimationButtons();
         }
 
-      
+
         private void RegisterButton_Click(object sender, EventArgs e)
         {
             var register = new RegisterUpdate(Enums.FormEnumerable.Register);
@@ -31,18 +31,18 @@ namespace Pacman.Forms
             this.LoginButton.Enabled = false;
             this.RegisterButton.Enabled = false;
 
-            //DataBridge.LogInUser(this.Username.Text, this.Password.Text);
+            DataBridge.LogInUser(this.Username.Text, this.Password.Text);
 
-            //if (DataBridge.UserIsLogin())
-            //{
+            if (DataBridge.UserIsLogin())
+            {
                 var pacmanMenu = new PacmanMenu();
                 Hide();
                 pacmanMenu.Show();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("The User not found.Please try again.");
-            //}
+            }
+            else
+            {
+                MessageBox.Show("The User not found.Please try again.");
+            }
 
             this.LoginButton.Text = "Login";
             this.RegisterButton.Enabled = true;
@@ -155,7 +155,7 @@ namespace Pacman.Forms
 
         private void Password_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == (int)Keys.Enter   )
+            if (e.KeyValue == (int)Keys.Enter)
             {
                 if (string.IsNullOrEmpty(this.Username.Text) || this.Username.Text == this.Username.PlaceHolderText)
                 {

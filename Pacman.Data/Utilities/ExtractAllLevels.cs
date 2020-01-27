@@ -15,6 +15,10 @@
             this.levels = new List<Level>();
         }
 
+        /// <summary>
+        /// Reading levels from level folder and returning models
+        /// </summary>
+        /// <returns></returns>
         public List<Level> ExctractLevels()
         {
             if (!Directory.Exists(LevelFolder))
@@ -42,8 +46,8 @@
                     {
                         QuadrantX = int.Parse(coords[0]),
                         QuadrantY = int.Parse(coords[1]),
-                        isPoint = land[0] == "1" ? true : false,
-                        isWall = land[1] == "1" ? true : false,
+                        isWall = land[0] == "1" ? true : false,
+                        isPoint = land[1] == "1" ? true : false,
                     });
 
                 }

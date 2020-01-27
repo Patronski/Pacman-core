@@ -288,6 +288,9 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="App.config" />
     <None Include="Content\Font.spritefont">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

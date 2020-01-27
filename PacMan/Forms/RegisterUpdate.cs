@@ -79,7 +79,7 @@ namespace Pacman.Forms
             {
                 var firstName = this.FirstName.Text;
                 var lastName = this.LastName.Text;
-                var burthDate = this.BurthDate.Value;
+                var birthDate = this.BirthDate.Value;
                 Country country = this.coutries.FirstOrDefault(c => c.Name == this.Countries.Text);
                 int? countryId = null;
                 if (country != null)
@@ -107,16 +107,16 @@ namespace Pacman.Forms
                     {
                         try
                         {
-                            DataBridge.RegisterUser(firstName, lastName, burthDate, countryId, cityId, email, password, false, User.Roles.user);
-                            if (DataBridge.UserIsLogin())
-                            {
-                                PacmanMenu gameMenu = new PacmanMenu();
-                                Hide();
-                                gameMenu.Show();
+                            DataBridge.RegisterUser(firstName, lastName, birthDate, countryId, cityId, email, password, false, User.Roles.user);
 
-                            }
+                            var loginMenu = new Login();
+                            this.Hide();
+                            loginMenu.Show();
+                            //PacmanMenu gameMenu = new PacmanMenu();
+                            //Hide();
+                            //gameMenu.Show();
                         }
-                        catch (Exception )
+                        catch (Exception)
                         {
                             MessageBox.Show("something wrong...Please try again");
                         }
@@ -126,7 +126,7 @@ namespace Pacman.Forms
                     {
                         try
                         {
-                            DataBridge.UpdateUser(firstName, lastName, burthDate, countryId, cityId, email, password, false, User.Roles.user);
+                            DataBridge.UpdateUser(firstName, lastName, birthDate, countryId, cityId, email, password, false, User.Roles.user);
                         }
                         catch (Exception)
                         {
@@ -236,7 +236,7 @@ namespace Pacman.Forms
         {
             this.FirstName.Clear();
             this.LastName.Clear();
-            this.BurthDate.ResetText();
+            this.BirthDate.ResetText();
             this.Countries.ResetText();
             this.Cities.ResetText();
             this.Username.Clear();
@@ -259,11 +259,13 @@ namespace Pacman.Forms
                 this.Countries.Items.AddRange(DataBridge.GetCountries.ToArray());
                 this.FirstName.Text = user.FirstName;
                 this.LastName.Text = user.LastName;
-                if (user.BurthDate != null) this.BurthDate.Value = (DateTime)user.BurthDate;
-                this.Countries.Text = user.Country.Name;
+                if (user.BirthDate != null) this.BirthDate.Value = (DateTime)user.BirthDate;
+                this.Countries.Text = user.Country?.Name;
 
                 this.Cities.Items.AddRange(DataBridge.GetCities.Where(c => c.Country.Name == this.Countries.Text).ToArray());
-                this.Cities.Text = user.City.Name;
+
+                this.Cities.Text = user.City?.Name;
+                
                 this.Username.Text = DataBridge.GetUserEmail();
             }
         }
